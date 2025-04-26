@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BANK SYSTEM BY HELLA</title>
+    <link rel="stylesheet" href="./style.css">
+    <script src="./index.js" defer></script>
+    <script src="./script/themes.js" defer></script>
+    <script src="./script/dragDrop.js" defer></script>
+    <script src="./script/greatting.js" defer></script>
+    <script src="./script/loader.js" defer></script>
+    <script src="./script/notify.js" defer></script>
+    <script src="./script/pin.js" defer></script>
+    <script src="./script/diagramSystem.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Jost:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+<div class="bcg"></div>
+
+<div class="login-screen">
+  <h1>Welcome to Hella Bank</h1>
+  <p>Please enter your PIN</p>
+  <form id="pin-form">
+    <div class="pin-input-container" id="pin-container">
+      <div class="pin-dot"></div>
+      <div class="pin-dot"></div>
+      <div class="pin-dot"></div>
+      <div class="pin-dot"></div>
+    </div>
+    <input
+      type="password"
+      id="pin-input"
+      maxlength="4"
+      autocomplete="off"
+      style="opacity: 0; position: absolute;"
+    />
+  </form>
+  <p id="error-message"></p>
+</div>
+
+
+
+
+<div id="main-content" style="display: none"></div>
+<div class="loader-container" id="loader-container">
+  <div class="loader"></div>
+</div>
+
+
+<div id="welcome-message" style="display: none;">
+  <h1>Welcome, User!</h1>
+</div>
+
+
+<header class="header" >
+   <div class="box small">
+      $
+   </div>
+   <h1 class="header-text main">BANKING SYSTEM</h1> 
+   <h2 class="header-text second">WELCOME TO THE BEST BANK IN USA</h2> 
+   <div class="theme-toggle-container">
+    <div id="theme-toggle" class="theme-toggle"></div>
+  </div>
+  
+  
+
+</header>
+
+<section class="conteiner">
+   <div class="box middle">
+      <h1 class="balance">YOUR BALANCE</h1>
+      <div class="balance-box">
+        <p class="balance-amount" id="balance-amount">$ 25.000.000</p>
+        <p class="balance-change" id="balance-change"> <br class="info"><span class="sec_Text">-500.000 $ TODAY</span></p>
+      </div>
+    
+      <div class="info-box">
+         <h1>INFO</h1>
+         <div class="box-info1">
+            <p>CURRENT DEBIT: <br class="info"><span class="sec_Text">+250.000 $ THIS WEEK</span></p>
+         </div>
+         <div class="box-info2">
+            <p>DEPOSIT: <br class="info"><span class="sec_Text">+250.000 $ THIS WEEK</span></p>
+         </div>
+       </div>
+    </div>
+   
+    <div class="box big">
+
+      
+      <div class="action-buttons">
+        <div class="action-button">
+          <i class="icon">💸</i>
+          <div class="button-text">
+            <h3>WITHDRAW MONEY</h3>
+            <p>WITHDRAW YOUR MONEY</p>
+          </div>
+        </div>
+        <div class="action-button">
+          <i class="icon">🏦</i>
+          <div class="button-text">
+            <h3>DEPOSIT MONEY</h3>
+            <p>PUT YOUR MONEY IN A SAFE PLACE</p>
+          </div>
+        </div>
+        <div class="action-button">
+          <i class="icon">🔄</i>
+          <div class="button-text">
+            <h3>TRANSFER TO ACCOUNT</h3>
+            <p>WITHDRAW YOUR MONEY</p>
+          </div>
+        </div>
+        <div class="action-button">
+          <i class="icon">💳</i>
+          <div class="button-text">
+            <h3>PAY FOR SERVICES</h3>
+            <p>PAY YOUR HOME OR BUSINESS TAX HERE</p>
+          </div>
+        </div>
+        <div class="action-button" id="transaction-button">
+          <i class="icon">📊</i>
+          <div class="button-text">
+              <h3>ACCOUNT STATUS</h3>
+              <p>View your balance and transactions</p>
+          </div>
+      </div>
+      </div>
+    </div>
+
+<div class="box middle2">
+    <h2>HISTORY</h2>
+    <div class="chart-container">
+        <canvas id="history-chart"></canvas>
+    </div>
+</div>
+
+    
+    
+
+
+     <div class="box confirm">
+      <h2>WITHDRAW MONEY</h2>
+      <p>WITHDRAW YOUR MONEY</p>
+      <form>
+        <div class="input-group">
+          <label for="amount">ENTER AMOUNT</label>
+          <input type="text" id="amount" placeholder="Enter amount" />
+        </div>
+        <div class="result">
+          <label for="result">RESULT:</label>
+          <span id="result">0$</span>
+        </div>
+        <button type="button" class="btn-confirm">CONFIRM</button>
+      </form>
+    </div>
+     
+    
+    <div class="card-container">
+      <div class="card">
+        <h1 class="carta">HELLA BANK</h1>
+        <div class="cardchip"></div>
+        <div class="card-details">
+          <p class="card-owner">Debit Card</p>
+          <p id="card-owner" class="card-owner">Evgenii Lutiy</p>
+          <p id="card-number" class="card-number" style="color: #FFD881;">2333 3412 3214 2344 6123</p>
+        </div>
+      </div>
+    
+      <div class="card back-card">
+        <h1 class="carta">BLACK Card</h1>
+        <div class="cardchip"></div>
+        <div class="card-details">
+          <p class="card-owner" id="locked-card-owner">Locked Card</p>
+          <p id="locked-card-number" class="card-number" style="color: #cfcdc9;">**** **** **** ****</p>
+        </div>
+        <button class="unlock-card-btn">Unlock Card</button>
+      </div>
+    
+      <button id="change-card-button" class="change-card-btn">
+        <span class="icon-arrow"></span>
+      </button>
+      
+    </div>
+  
+    
+    <div class="goal-container">
+      <h2>Financial Goal</h2>
+      <p id="goal-text">Goal: Save for a MacBook ($2000)</p>
+      <div class="progress-bar">
+          <div id="progress" style="width: 0%;"></div>
+      </div>
+  </div>
+  
+
+     </div>
+</section>
+
+<div id="transaction-menu" class="transaction-menu">
+  <h2>Transaction History</h2>
+  <ul id="transaction-list"></ul>
+</div>
+
+
+  <div id="notification-container" class="notification-container"></div>
+</body>
+</html>
