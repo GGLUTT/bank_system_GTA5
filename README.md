@@ -2,6 +2,10 @@
 
 A modern, interactive banking system interface inspired by the GTA 5 video game. This web application simulates a virtual banking experience with multiple features like deposits, withdrawals, transfers, and account management.
 
+## Live Demo
+
+You can access the live demo here: [GTA 5 Banking System Demo](https://gglutt.github.io/bank_system_GTA5/)
+
 ## Features
 
 - **Secure Access**: PIN-based login system to protect user accounts
