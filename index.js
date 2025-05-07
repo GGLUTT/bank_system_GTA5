@@ -192,6 +192,13 @@ document.addEventListener("DOMContentLoaded", () => {
         // Update the amount placeholder
         document.getElementById("amount").placeholder = "Enter amount";
         
+        // Update the result label style to match the design
+        const resultContainer = document.querySelector(".result");
+        resultContainer.innerHTML = `
+            <label for="result">RESULT:</label>
+            <span id="result">0$</span>
+        `;
+        
         // Set confirmation button behavior
         confirmButton.onclick = () => {
             const amount = parseInput(amountInput.value);
@@ -204,7 +211,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
             if (!isNaN(amount) && amount > 0) {
                 updateBalance(amount, "transfer");
-                resultField.textContent = `$ ${formatNumber(amount)}`;
+                document.getElementById("result").textContent = `${formatNumber(amount)}$`;
                 amountInput.value = "";
                 document.getElementById("account-number").value = "";
             } else {
