@@ -1,4 +1,3 @@
-
 document.getElementById("balance-amount").textContent = "$ 300.000.000";
 document.getElementById("balance-change").textContent = "-350.000 $ TODAY";
 
@@ -163,20 +162,22 @@ document.addEventListener("DOMContentLoaded", () => {
         };
     }
 
-    /** Обробник для зняття грошей */
-    document.querySelector(".action-buttons .action-button:nth-child(1)").addEventListener("click", () => {
-        handleTransaction("withdraw", "WITHDRAW MONEY");
-    });
-
-    /** Обробник для поповнення балансу */
-    document.querySelector(".action-buttons .action-button:nth-child(2)").addEventListener("click", () => {
-        handleTransaction("deposit", "DEPOSIT MONEY");
-    });
-
     /** Обробник для переказу на інший рахунок */
     document.querySelector(".action-buttons .action-button:nth-child(3)").addEventListener("click", () => {
-        handleTransaction("transfer", "TRANSFER TO ACCOUNT");
-
+        // First, clean up previous inputs and set correct heading
+        removeAdditionalFields();
+        
+        // Set the form data attribute for styling
+        document.querySelector(".box.confirm").setAttribute("data-form-type", "transfer");
+        
+        formHeading.textContent = "TRANSFER TO ACCOUNT";
+        formDescription.textContent = "TRANSFER TO ACCOUNT";
+        confirmButton.textContent = "CONFIRM TRANSFER TO ACCOUNT";
+        
+        // Update the result label to show 0$ initially
+        resultField.textContent = "0$";
+        
+        // Add account number field
         let accountNumberInput = document.getElementById("account-number");
         if (!accountNumberInput) {
             const inputGroup = document.createElement("div");
@@ -187,7 +188,11 @@ document.addEventListener("DOMContentLoaded", () => {
             `;
             confirmForm.insertBefore(inputGroup, confirmButton);
         }
-
+        
+        // Update the amount placeholder
+        document.getElementById("amount").placeholder = "Enter amount";
+        
+        // Set confirmation button behavior
         confirmButton.onclick = () => {
             const amount = parseInput(amountInput.value);
             const accountNumber = document.getElementById("account-number").value;
@@ -207,9 +212,20 @@ document.addEventListener("DOMContentLoaded", () => {
             }
         };
     });
-
-    /** Обробник для оплати послуг */
+    
+    // Reset the form type attribute when other operations are selected
+    document.querySelector(".action-buttons .action-button:nth-child(1)").addEventListener("click", () => {
+        document.querySelector(".box.confirm").removeAttribute("data-form-type");
+        handleTransaction("withdraw", "WITHDRAW MONEY");
+    });
+    
+    document.querySelector(".action-buttons .action-button:nth-child(2)").addEventListener("click", () => {
+        document.querySelector(".box.confirm").removeAttribute("data-form-type");
+        handleTransaction("deposit", "DEPOSIT MONEY");
+    });
+    
     document.querySelector(".action-buttons .action-button:nth-child(4)").addEventListener("click", () => {
+        document.querySelector(".box.confirm").removeAttribute("data-form-type");
         handleTransaction("pay", "PAY FOR SERVICES");
     });
 
